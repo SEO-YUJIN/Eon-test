@@ -17,5 +17,4 @@ void main()
 	}
 	printf("%d", iSum);
 
-	return 0;
 }
