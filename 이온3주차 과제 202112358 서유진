@@ -1,0 +1,21 @@
+// E-on 3주차 과제 원소의 합
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void main()
+{
+	int iValue[6] = { 0 };  //iValue 배열 초기화
+	int iCount; //배열의 크기 변수 값
+	int iSum = 0; //배열의 합 초기화
+	printf("숫자 6개를 입력하시오 : ");
+	scanf("%d,%d,%d,%d,%d,%d", &iValue[0], &iValue[1], &iValue[2], &iValue[3], &iValue[4], &iValue[5]);
+
+	for (iCount = 0; iCount < 6; iCount++) //배열의 합 구하기, 배열의 크기가 0~5까지.
+	{
+		iSum += iValue[iCount];  
+	}
+	printf("%d", iSum);
+
+	return 0;
+}
