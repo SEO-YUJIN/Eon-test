@@ -1,0 +1,33 @@
+//E-oN 4주차 과제 
+//bubble sort를 통해 오름차순으로 정렬
+
+#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+int main()
+{
+	int iValue[6] = { 0 };    //iValue 배열 선언 및 초기화
+	int temp = 0;           //swap(교환)을 위해 선언 및 초기화
+	int i, j = 0;    //변수값 초기 화
+
+	printf("6개의 수를 입력하시오 : ");
+	scanf_s("%d %d %d %d %d %d", &iValue[0], &iValue[1], &iValue[2], &iValue[3], &iValue[4], &iValue[5]);
+
+	//오름차순 정리
+	for (i = 0; i < 6; i++) 
+	{
+		for (j = 0; j < 5 - i; j++)      //배열 내의 가장 큰 수가 마지막으로 가게 설정된 후 앞에 5개 숫자만 반복
+		{   //버블 정렬
+			if (iValue[j] > iValue[j + 1])     //iValue[j]의 값이 iValue[j+1]의 값보다 클 경우
+			{
+				temp = iValue[j]; //iValue[j]의 값을 temp로 이동
+				iValue[j] = iValue[j + 1];     //iValue[j+1]의 값을 iValue[j]에 이동
+				iValue[j + 1] = temp;      //temp는 iValue[j]의 값으로 그 값을 iValue[j+1]로 이동해서 둘의 위치를 변경 시킴.
+			}
+		}
+	}
+	//정렬 된 배열의 값 출력
+	printf("%d, %d, %d, %d, %d, %d", iValue[0], iValue[1], iValue[2], iValue[3], iValue[4], iValue[5]);
+
+	return 0;
+}
