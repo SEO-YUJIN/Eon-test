@@ -1,12 +1,25 @@
 #E-on 5주차과제 
 
+array = list(map(int, input(). split()))
+
+print(array)
+
+commands = [list(map(int, input().split())) for _ in range(3)]
+
+print(commands)
+
 def solution(array, commands):
     answer = []   #답을 담기 위한 리스트
-    
+
     for command in commands:    #command는 각각의 [i,j,k]
-        i,j,k = command        #i,j,k로 리스트 각 요소를 정의
-        arr = array[i-1 : j]   #i번째는 인덱스 i-1, j-1번째는 +1을 해서 j까
+        i = command[0]
+        j = command[1]
+        k = command[2]
+        #i,j,k로 리스트 각 요소를 정의
+        arr = array[i-1 : j]   #i번째는 인덱스 i-1, j-1번째는 +1을 해서 j까지
         arr.sort()     #sort함수를 이용해 잘라낸 배열을 오름차순으로 정렬
         answer.append(arr[k-1])  #k번째(인덱스 k-1)의 값을 answer배열에 추가
    
     return answer
+print(solution(array, commands))
+  
