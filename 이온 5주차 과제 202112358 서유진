@@ -1,11 +1,9 @@
 #E-on 5주차과제 
 
 array = list(map(int, input(). split()))
-
 print(array)
 
 commands = [list(map(int, input().split())) for _ in range(3)]
-
 print(commands)
 
 def solution(array, commands):
@@ -21,5 +19,6 @@ def solution(array, commands):
         answer.append(arr[k-1])  #k번째(인덱스 k-1)의 값을 answer배열에 추가
    
     return answer
+    
 print(solution(array, commands))
   
