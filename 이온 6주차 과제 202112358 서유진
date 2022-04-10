@@ -1,0 +1,12 @@
+#이온 6주차 과제
+
+pizza = int(input("피자의 조각 수 : "))
+
+arr=[1 for i in range(pizza+1)]
+
+arr[1]=1
+for i in range(2,pizza+1):
+	arr[i]=arr[i-1]+arr[i-2]
+
+
+print(arr[-1])
