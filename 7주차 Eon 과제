@@ -1,0 +1,354 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include<fstream>
+#include <string>
+using namespace std;
+
+
+class book
+{
+public:
+    char book_name[50];
+    char book_author[10];
+    int book_year;
+    char book_publisher[30];
+    char book_genre[20];
+
+    ifstream fin;    //출력파일스트림.
+    ofstream fout;   //입력파일스트림.
+
+public:
+    book(char* name, char* author, char* publisher, char* genre, int year); //생성함수
+    void show_infor();
+    char* getname();
+    char* getauthor();
+    char* getpublisher();
+    char* getgenre();
+    int getyear();
+    void output();           // 출력.
+    void input();            // 입력.
+};
+
+
+book::book(char* name, char* author, char* publisher, char* genre, int year)
+{
+    strcpy(book_name, name);
+    strcpy(book_author, author);
+    strcpy(book_publisher, publisher);
+    strcpy(book_genre, genre);
+    book_year = year;
+}
+
+int bookindex = 0;  //책 몇권 들어 갔는지 세는 변수
+book booklist[10];  //변수로 10개짜리 배열 만들어서 bookclass에 10권저장
+
+char* book::getname()
+{
+    return book_name;
+}
+
+char* book::getauthor()
+{
+    return book_author;
+}
+
+char* book::getpublisher()
+{
+    return book_publisher;
+}
+
+char* book::getgenre()
+{
+    return book_genre;
+}
+
+void book::show_infor()
+{
+    cout << "책 이름: " << book_name << endl;
+    cout << "작가 이름: " << book_author << endl;
+    cout << "출판사 이름:" << book_publisher << endl;
+    cout << "장르 이름" << book_genre << endl;
+    cout << "출판 년도" << book_year << endl;
+    fout.open("input.txt");
+    fout << book_name << ' ' << book_author << ' ' << book_publisher << ' ' << book_genre << ' ' << book_year << endl;
+    fout.close();
+}
+
+void book_add(book booklist[], int& bookindex)
+{
+    char bookname[30];
+    char bookauthor[30];
+    char bookpublisher[30];
+    char bookgenre[30];
+    int bookyear;
+    cout << "책 이름";
+    cin >> bookname;
+    cout << "작가 이름";
+    cin >> bookauthor;
+    cout << "출판사 이름";
+    cin >> bookpublisher;
+    cout << "책 장르";
+    cin >> bookgenre;
+    cout << "출판연도";
+    cin >> bookyear;
+
+    booklist[bookindex++] = book(bookname, bookauthor, bookpublisher, bookgenre, bookyear);
+    //배열로 받음
+}
+
+void search_bookname()  //책 이름
+{
+    char name[50];
+    cout << "검색할 책 이름 입력";
+    cin >> name;
+
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (booklist[bookindex].book_name == name)
+        {
+            cout << booklist[bookindex].book_name;
+            cout << booklist[bookindex].book_author;
+            cout << booklist[bookindex].book_year;
+            cout << booklist[bookindex].book_publisher;
+            cout << booklist[bookindex].book_genre;
+        }
+        else
+            cout << "찾으시는 책이 없습니다.";
+    }
+}
+
+void search_author()  //작가
+{
+    int searchcnt = 0;   //
+    char author[30] = { 0, };  //
+
+
+    cout << "저자의 이름을 입력";
+    cin >> author; //문자를 받아서 fo문으로 책 갯수 만큼 돌림 
+    //물어볼거
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (strcmp(booklist[i].book_author, author) == 0)
+        {
+            cout << booklist[bookindex].book_name;
+            cout << booklist[bookindex].book_author;
+            cout << booklist[bookindex].book_year;
+            cout << booklist[bookindex].book_publisher;
+            cout << booklist[bookindex].book_genre;
+        }
+        else
+            cout << "찾으시는 책이 없습니다.";
+    }
+}
+
+void search_year()
+{
+    int year;
+    cout << "검색할 연도 입력";
+    cin >> year;
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (booklist[bookindex].book_year == year)
+        {
+            cout << booklist[bookindex].book_name;
+            cout << booklist[bookindex].book_author;
+            cout << booklist[bookindex].book_year;
+            cout << booklist[bookindex].book_publisher;
+            cout << booklist[bookindex].book_genre;
+        }
+        else
+            cout << "찾으시는 책이 없습니다.";
+    }
+}
+
+
+void search_publisher()
+{
+    char publisher[50];
+    cout << "검색할 작가 이름 입력";
+    cin >> publisher;
+
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (booklist[bookindex].book_publisher == publisher)
+        {
+            cout << booklist[bookindex].book_name;
+            cout << booklist[bookindex].book_author;
+            cout << booklist[bookindex].book_year;
+            cout << booklist[bookindex].book_publisher;
+            cout << booklist[bookindex].book_genre;
+        }
+        else
+            cout << "찾으시는 책이 없습니다.";
+    }
+}
+
+void search_genre()
+{
+    char genre[50];
+    cout << "검색할 장르 입력";
+    cin >> genre;
+
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (booklist[bookindex].book_genre == genre)
+        {
+            cout << booklist[bookindex].book_name;
+            cout << booklist[bookindex].book_author;
+            cout << booklist[bookindex].book_year;
+            cout << booklist[bookindex].book_publisher;
+            cout << booklist[bookindex].book_genre;
+        }
+        else
+            cout << "찾으시는 책이 없습니다.";
+    }
+}
+
+
+void book_search()
+{
+    int num1;
+    cout << "1. 책이름 검색";
+    cout << "2. 저자 검색";
+    cout << "3. 출판연도 검색";
+    cout << "4. 출판사명 검색";
+    cout << "5. 장르 검색";
+    cin >> num1;
+
+    if (num1 == 1)
+    {
+        search_bookname();
+    }
+
+    else if (num1 == 2)
+    {
+        search_author();
+    }
+
+    else if (num1 == 3)
+    {
+        search_year();
+    }
+
+    else if (num1 == 4)
+    {
+        search_publisher();
+    }
+
+    else if (num1 == 5)
+    {
+        search_genre();
+    }
+
+}
+
+void book_modify()
+{
+    char bookname[30] = { 0 };
+    cout << "수정하고 싶은 책 제목 입력: ";
+    cin >> bookname;
+}
+
+void save_book()
+{
+    ofstream outfile("input.txt");
+    for (int i = 0; i < bookindex; i++)
+    {
+        outfile << booklist[i].book_name << ' ' << booklist[i].book_author << ' ' << booklist[i].book_publisher << ' ' << booklist[i].book_genre << ' ' << booklist[i].book_year << endl;
+    }
+    outfile << endl;
+}
+
+void book_delete()
+{
+    char bookname[30];
+    int i = 0;
+    cout << "삭제 하고 싶은 책 제목 입력: ";
+    cin >> bookname;
+
+    for (int i = 0; i < bookindex; i++)
+    {
+        if (booklist[bookindex].book_name == bookname)
+        {
+
+        }
+    }
+    save_book();
+}
+
+void ShowLoanableBook() //현재 도서목록 출력
+{
+    int loanableB_idx = 1; //현재 도서목록들의 인덱스를 표시하기 위한 변수
+
+    for (int i = 0; i < bookindex; i++)
+    {
+        cout << " " << loanableB_idx << ")";
+        cout << booklist[bookindex].getname() << ", ";
+        cout << booklist[bookindex].getauthor() << ", ";
+        cout << booklist[bookindex].getyear() << ", ";
+        cout << booklist[bookindex].getpublisher() << ", ";
+        cout << booklist[bookindex].getgenre();
+
+        loanableB_idx++;
+
+        cout << endl;
+    }
+}
+
+int main()
+{
+    int num1 = 0;  //메뉴 선택 변수
+
+    char name[100];  //책이름
+    char author[10];
+    char publisher[30];
+    char genre[20];
+    int year;
+
+    cout << "1. 도서 추가" << endl;
+    cout << "2. 도서 검색" << endl;
+    cout << "3. 도서 정보 수정" << endl;
+    cout << "4. 도서 삭제" << endl;
+    cout << "5. 도서 목록 출력" << endl;
+    cout << "6. 저장" << endl;
+    cout << "7. 프로그램 나가기" << endl;
+
+    cin >> num1;
+
+    if (num1 == 1)
+    {
+        book_add(booklist, bookindex);  
+    }
+
+    else if (num1 == 2)
+    {
+        book_search();
+    }
+
+    else if (num1 == 3)
+    {
+        book_modify();
+    }
+    else if (num1 == 4)
+    {
+        book_delete();
+    }
+
+    else if (num1 == 5)
+    {
+        ShowLoanableBook();
+    }
+
+    else if (num1 == 6)
+    {
+        save_book();
+    }
+
+    else if (num1 == 7)
+    {
+        cout << "프로그램 종료";
+    }
+
+    else
+        cout << "번호를 다시 선택하시오.";
+}
