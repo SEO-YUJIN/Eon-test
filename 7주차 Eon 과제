@@ -18,13 +18,14 @@ public:
     ofstream fout;   //입력파일스트림.
 
 public:
+    book() {}
     book(char* name, char* author, char* publisher, char* genre, int year); //생성함수
     void show_infor(); //책 정보 보여주는 함수
     char* getname();   //책 이름을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
     char* getauthor();  //작가 이름을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
     char* getpublisher(); // 출판사명 을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
     char* getgenre();    //장르를 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
-    int getyear();      
+    //int getyear();      
     void output();           // 출력.
     void input();            // 입력.
 };
