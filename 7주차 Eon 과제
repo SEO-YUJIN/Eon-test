@@ -30,7 +30,7 @@ public:
 };
 
 
-book::book(char* name, char* author, char* publisher, char* genre, int year) //생성함수
+book::book(char* name, char* author, char* publisher, char* genre, int year) //생성함수 기본생성자..?
 {
     strcpy(book_name, name);               //book_name이 class멤버 변수여서 직접 저장못하므로 멤버함수 name을 통해 저장, 문자열저장하는 함수 strcpy사용
     strcpy(book_author, author);          //book_author이 class멤버 변수여서 직접 저장못하므로 멤버함수 author을 통해 저장
