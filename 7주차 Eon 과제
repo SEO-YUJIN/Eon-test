@@ -44,7 +44,7 @@ book booklist[10];  //변수로 10개짜리 배열 만들어서 bookclass에 10�
 
 char* book::getname() 
 {
-    return book_name; //반환값 return을 이용해서 private에 있는 멤버함수 book_name을 반환. 
+    return book_name; //반환값 return을 이용해서 멤버함수 book_name을 반환. 
 }
 
 char* book::getauthor()
