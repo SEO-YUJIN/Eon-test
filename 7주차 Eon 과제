@@ -8,43 +8,43 @@ using namespace std;
 class book
 {
 public:
-    char book_name[50];
-    char book_author[10];
-    int book_year;
-    char book_publisher[30];
-    char book_genre[20];
+    char book_name[50]; //책이름 배열
+    char book_author[10];  //작가 배열
+    int book_year;         //년도
+    char book_publisher[30];  //출판사명 배열
+    char book_genre[20];      //장르 배열
 
     ifstream fin;    //출력파일스트림.
     ofstream fout;   //입력파일스트림.
 
 public:
     book(char* name, char* author, char* publisher, char* genre, int year); //생성함수
-    void show_infor();
-    char* getname();
-    char* getauthor();
-    char* getpublisher();
-    char* getgenre();
-    int getyear();
+    void show_infor(); //책 정보 보여주는 함수
+    char* getname();   //책 이름을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
+    char* getauthor();  //작가 이름을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
+    char* getpublisher(); // 출판사명 을 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
+    char* getgenre();    //장르를 가져오는 함수 반환값이 문자열이 여서 char*을 썻다.
+    int getyear();      
     void output();           // 출력.
     void input();            // 입력.
 };
 
 
-book::book(char* name, char* author, char* publisher, char* genre, int year)
+book::book(char* name, char* author, char* publisher, char* genre, int year) //생성함수
 {
-    strcpy(book_name, name);
-    strcpy(book_author, author);
-    strcpy(book_publisher, publisher);
-    strcpy(book_genre, genre);
-    book_year = year;
+    strcpy(book_name, name);               //book_name이 class멤버 변수여서 직접 저장못하므로 멤버함수 name을 통해 저장, 문자열저장하는 함수 strcpy사용
+    strcpy(book_author, author);          //book_author이 class멤버 변수여서 직접 저장못하므로 멤버함수 author을 통해 저장
+    strcpy(book_publisher, publisher);    //book_publisher이 class멤버 변수여서 직접 저장못하므로 멤버함수 publisher을 통해 저장
+    strcpy(book_genre, genre);            //book_genre이 class멤버 변수여서 직접 저장못하므로 멤버함수 genre을 통해 저장
+    book_year = year;                    //book_year이 class멤버 변수여서 직접 저장못하므로 멤버함수 year을 통해 저장
 }
 
 int bookindex = 0;  //책 몇권 들어 갔는지 세는 변수
 book booklist[10];  //변수로 10개짜리 배열 만들어서 bookclass에 10권저장
 
-char* book::getname()
+char* book::getname() 
 {
-    return book_name;
+    return book_name; //반환값 return을 이용해서 private에 있는 멤버함수 book_name을 반환. 
 }
 
 char* book::getauthor()
@@ -104,7 +104,7 @@ void search_bookname()  //책 이름
 
     for (int i = 0; i < bookindex; i++)
     {
-        if (booklist[bookindex].book_name == name)
+        if (booklist[bookindex].book_name == name)  //멤버 변수 booklist에 있는 멤버를 사용할 때 . 사용함
         {
             cout << booklist[bookindex].book_name;
             cout << booklist[bookindex].book_author;
